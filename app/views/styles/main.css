@@ -1,0 +1,16 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  text-align: center;
+}
+
+h1 {
+  display: inline-block;
+  margin-top: 200px;
+  font-size: 120pt;
+  font-weight: bold;
+  font-family: Arial, sans-serif; 
+}
