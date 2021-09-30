@@ -80,7 +80,7 @@ var registerPaths = function() {
             // looking for... (here) or (gone | away)
             // can also give "msg:<some message>"
             // can also give "help"
-            if(bodytoLowerCase() == 'commands') {
+            if(body.toLowerCase() == 'commands') {
                 twilio_client.messages.create({        
                     messagingServiceSid: process.env.TWILIO_MSG_SID, 
                     to: from_number,
