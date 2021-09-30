@@ -5,6 +5,13 @@
     </style>
   <head>
   <body>
-    <h1>YES</h1>
+    {{#if here}}
+      <h1>YES</h1>
+    {{else}}
+      <h1>NO</h1>
+    {{/if}}
+    {{#if message_exists}}
+      <h4>david says: {{message}}</h4>
+    {{/if}}
   </body>
 </html>
