@@ -78,9 +78,9 @@ var registerPaths = function() {
         if(_.contains(whitelist, from_number)) {
             // check the message
             // looking for... (here) or (gone | away)
-            // can also give "message:<some message>"
+            // can also give "msg:<some message>"
             // can also give "help"
-            if(body == 'help') {
+            if(bodytoLowerCase() == 'commands') {
                 twilio_client.messages.create({        
                     messagingServiceSid: process.env.TWILIO_MSG_SID, 
                     to: from_number,
@@ -127,7 +127,7 @@ var registerPaths = function() {
             twilio_client.messages.create({        
                 messagingServiceSid: process.env.TWILIO_MSG_SID, 
                 to: from_number,
-                body: 'Hmm, didn\'t get that! Say "help" for help.'
+                body: 'Hmm, didn\'t get that! Say "commands" for help.'
             }).done();
             
         } else {
