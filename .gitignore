@@ -28,3 +28,7 @@ app/node_modules/**
 .DS_Store
 
 /staticContent/
+
+.env
+msg.txt
+status.txt
