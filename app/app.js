@@ -87,9 +87,10 @@ var registerPaths = function() {
                     body: 'Say "here" or "away", or "msg:<your message>"'
                 }).done();
                 res.status(200).end();
+                return;
             }
 
-            if(body == 'here') {
+            if(body.toLowerCase() == 'here') {
                 fs.writeFileSync(__dirname + '/status.txt', 'h');
                 twilio_client.messages.create({        
                     messagingServiceSid: process.env.TWILIO_MSG_SID, 
@@ -97,19 +98,21 @@ var registerPaths = function() {
                     body: 'Howdy! Enjoy your stay!'
                 }).done();
                 res.status(200).end();
+                return;
             }
 
-            if(body == 'away') {
+            if(body.toLowerCase() == 'away') {
                 fs.writeFileSync(__dirname + '/status.txt', 'a');
                 twilio_client.messages.create({        
                     messagingServiceSid: process.env.TWILIO_MSG_SID, 
                     to: from_number,
-                    body: 'Howdy! Enjoy your stay!'
+                    body: 'See you next time!'
                 }).done();
                 res.status(200).end();
+                return;
             }
 
-            if(body.startsWith('msg:')) {
+            if(body.toLowerCase().startsWith('msg:')) {
                 fs.writeFileSync(__dirname + '/msg.txt', body.substring(4))
                 twilio_client.messages.create({        
                     messagingServiceSid: process.env.TWILIO_MSG_SID, 
@@ -117,7 +120,15 @@ var registerPaths = function() {
                     body: 'Got it, loud and clear!'
                 }).done();
                 res.status(200).end();
+                return;
             }
+
+            // if we got here then we didn't do something!
+            twilio_client.messages.create({        
+                messagingServiceSid: process.env.TWILIO_MSG_SID, 
+                to: from_number,
+                body: 'Hmm, didn\'t get that! Say "help" for help.'
+            }).done();
             
         } else {
             twilio_client.messages.create({        
